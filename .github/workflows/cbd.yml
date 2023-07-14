@@ -11,7 +11,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
             - name: Build
-              run: npm i && npm run build
+              run: yarn && yarn run build
             - name: DeployGP
               uses: peaceiris/actions-gh-pages@v3
               with:
