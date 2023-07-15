@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>单例模式 | 前端小站</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.e8e4f3a3.css" as="style"><link rel="preload" href="/assets/js/app.1e0ce0a5.js" as="script"><link rel="preload" href="/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/assets/js/15.d0946201.js" as="script"><link rel="prefetch" href="/assets/js/10.1fa20c27.js"><link rel="prefetch" href="/assets/js/11.69db5189.js"><link rel="prefetch" href="/assets/js/12.c507f7ee.js"><link rel="prefetch" href="/assets/js/13.46b39563.js"><link rel="prefetch" href="/assets/js/14.3845b213.js"><link rel="prefetch" href="/assets/js/16.163a1a9f.js"><link rel="prefetch" href="/assets/js/17.01c05907.js"><link rel="prefetch" href="/assets/js/3.8dfc125c.js"><link rel="prefetch" href="/assets/js/4.d12742be.js"><link rel="prefetch" href="/assets/js/5.216cae74.js"><link rel="prefetch" href="/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/assets/js/7.9c9172a7.js"><link rel="prefetch" href="/assets/js/8.f13be055.js"><link rel="prefetch" href="/assets/js/9.32241077.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e8e4f3a3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">前端小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/design/" class="nav-link router-link-active">
+  设计模式
+</a></div> <a href="https://github.com/vuejs/vuepress" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/design/" class="nav-link router-link-active">
+  设计模式
+</a></div> <a href="https://github.com/vuejs/vuepress" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/design/" aria-current="page" class="sidebar-link">简介</a></li><li><a href="/design/adapter.html" class="sidebar-link">状态模式</a></li><li><a href="/design/combination.html" class="sidebar-link">组合模式</a></li><li><a href="/design/decorator.html" class="sidebar-link">装饰器模式</a></li><li><a href="/design/chain-of-responsibility.html" class="sidebar-link">责任链模式</a></li><li><a href="/design/publish-subcribe.html" class="sidebar-link">发布订阅模式</a></li><li><a href="/design/proxy.html" class="sidebar-link">代理模式</a></li><li><a href="/design/single.html" aria-current="page" class="active sidebar-link">单例模式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/design/single.html#一、javascript-中的单例模式" class="sidebar-link">一、JavaScript 中的单例模式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/design/single.html#_1-使用命名空间" class="sidebar-link">1. 使用命名空间</a></li><li class="sidebar-sub-header"><a href="/design/single.html#_2-使用闭包封装私有变量" class="sidebar-link">2. 使用闭包封装私有变量</a></li></ul></li><li class="sidebar-sub-header"><a href="/design/single.html#二、惰性单例" class="sidebar-link">二、惰性单例</a></li><li class="sidebar-sub-header"><a href="/design/single.html#三、例子" class="sidebar-link">三、例子</a></li></ul></li><li><a href="/design/status.html" class="sidebar-link">状态模式</a></li><li><a href="/design/strategy.html" class="sidebar-link">策略模式</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="单例模式"><a href="#单例模式" class="header-anchor">#</a> 单例模式</h1> <blockquote><p>定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p></blockquote> <p><code>Vue</code> 中对应的体现就是 <code>Vuex</code>，一个 <code>Vue</code> 实例只会有一个全局的 Store。</p> <h2 id="一、javascript-中的单例模式"><a href="#一、javascript-中的单例模式" class="header-anchor">#</a> 一、JavaScript 中的单例模式</h2> <p>在 JavaScript 开发中，我们经常会把全局变量当成单例来使用，但是这样容易造成命名空间污染。我们有必要尽量减少全局变量的使用，即使需要，也应该把污染降到最低。</p> <h3 id="_1-使用命名空间"><a href="#_1-使用命名空间" class="header-anchor">#</a> 1. 使用命名空间</h3> <p>适当的使用命名空间，并不会杜绝全局变量，但可以减少全局变量的数量。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">let</span> MyApp <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+MyApp<span class="token punctuation">.</span><span class="token function-variable function">namespace</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> parts <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> current <span class="token operator">=</span> MyApp
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> parts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> key <span class="token operator">=</span> parts<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>current<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      current<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    current <span class="token operator">=</span> current<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+MyApp<span class="token punctuation">.</span><span class="token function">namespace</span><span class="token punctuation">(</span><span class="token string">'event'</span><span class="token punctuation">)</span>
+MyApp<span class="token punctuation">.</span><span class="token function">namespace</span><span class="token punctuation">(</span><span class="token string">'dom.stype'</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>MyApp<span class="token punctuation">)</span>
+
+<span class="token comment">// 上述代码等价于</span>
+
+<span class="token keyword">let</span> MyApp <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">event</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">dom</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">style</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_2-使用闭包封装私有变量"><a href="#_2-使用闭包封装私有变量" class="header-anchor">#</a> 2. 使用闭包封装私有变量</h3> <p>把一些变量封装到闭包内部，只暴露一些接口跟外界通信：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> _name <span class="token operator">=</span> <span class="token string">'sven'</span><span class="token punctuation">,</span> _age <span class="token operator">=</span> <span class="token number">29</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">getUserInfo</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> _name <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> _age
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getUserInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="二、惰性单例"><a href="#二、惰性单例" class="header-anchor">#</a> 二、惰性单例</h2> <p>惰性单例指的是在需要的时候才创建对象实例。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 管理单例</span>
+<span class="token keyword">const</span> <span class="token function-variable function">getSingle</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> result <span class="token operator">||</span> <span class="token punctuation">(</span> result <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span> <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">createLoginLayer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>
+  div<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'我是登录浮窗'</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>div<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> div
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> createSingleLoginLayer <span class="token operator">=</span> <span class="token function">getSingle</span><span class="token punctuation">(</span>createLoginLayer<span class="token punctuation">)</span>
+<span class="token keyword">var</span> loginLayer <span class="token operator">=</span> <span class="token function">createSingleLoginLayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> loginLayer <span class="token operator">=</span> <span class="token function">createSingleLoginLayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> loginLayer <span class="token operator">=</span> <span class="token function">createSingleLoginLayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">const</span> createSingleIframe <span class="token operator">=</span> <span class="token function">getSingle</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> iframe <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'iframe'</span><span class="token punctuation">)</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>iframe<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> iframe
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> iframe <span class="token operator">=</span> <span class="token function">createSingleIframe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> iframe <span class="token operator">=</span> <span class="token function">createSingleIframe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> iframe <span class="token operator">=</span> <span class="token function">createSingleIframe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="三、例子"><a href="#三、例子" class="header-anchor">#</a> 三、例子</h2> <ul><li><p>描述（<strong>实现一个 Storage）</strong>
+实现 Storage，使得该对象为单例，基于 localStorage 进行封装。实现方法 setItem(key,value) 和 getItem(key)。</p></li> <li><p>实现 1 <strong>（闭包实现 Storage）</strong></p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">StoreBase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token class-name">StoreBase</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getItem</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token class-name">StoreBase</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">setItem</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> val</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> val<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> Store <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> instance <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StoreBase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> instance
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> store1 <span class="token operator">=</span> <span class="token function">Store</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> store2 <span class="token operator">=</span> <span class="token function">Store</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+store1<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'张三'</span><span class="token punctuation">)</span>
+
+store2<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span> <span class="token comment">// 张三</span>
+store1<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span> <span class="token comment">// 张三</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store1 <span class="token operator">===</span> store2<span class="token punctuation">)</span> <span class="token comment">//</span>
+</code></pre></div><ul><li>实现 2 <strong>（静态类实现 Storage）</strong></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Storage</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Storage<span class="token punctuation">.</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      Storage<span class="token punctuation">.</span>instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Storage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> Storage<span class="token punctuation">.</span>instance
+  <span class="token punctuation">}</span>
+  <span class="token function">getItem</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">setItem</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> storage1 <span class="token operator">=</span> Storage<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> storage2 <span class="token operator">=</span> Storage<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+storage1<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'张三'</span><span class="token punctuation">)</span>
+storage1<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span>
+storage2<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storage1 <span class="token operator">===</span> storage2<span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/vuejs/vuepress/edit/master/design/single.md" target="_blank" rel="noopener noreferrer">帮助我们改善此页面！</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/14/2023, 3:04:42 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/design/proxy.html" class="prev">
+        代理模式
+      </a></span> <span class="next"><a href="/design/status.html">
+        状态模式
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.1e0ce0a5.js" defer></script><script src="/assets/js/2.733019b2.js" defer></script><script src="/assets/js/15.d0946201.js" defer></script>
+  </body>
+</html>
