@@ -5,6 +5,7 @@ export default defineConfig(ctx => ({
 	/**
 	 * Type is `DefaultThemeConfig`
 	 */
+	base: '/docs/',
 	themeConfig: {
 		repo: "vuejs/vuepress",
 		editLinks: true,
