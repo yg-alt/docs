@@ -31,4 +31,7 @@ export default defineConfig((ctx) => ({
     sidebarDepth: 2,
     lastUpdated: 'Last Updated', // string | boolean
   },
+  markdown: {
+    lineNumbers: true,
+  },
 }))
