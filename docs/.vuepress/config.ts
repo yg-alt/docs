@@ -7,6 +7,7 @@ export default defineConfig((ctx) => ({
    */
 
   base: '/docs/',
+  description: '起风了 唯有努力生存',
   themeConfig: {
     repo: 'https://github.com/Cwd295645351/docs',
     repoLabel: '查看源码',
@@ -34,4 +35,5 @@ export default defineConfig((ctx) => ({
   markdown: {
     lineNumbers: true,
   },
+  plugins: ['@vuepress/plugin-back-to-top'],
 }))
