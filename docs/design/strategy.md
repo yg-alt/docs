@@ -45,27 +45,26 @@
 
 ```js
 // 定义绩效策略函数
-const performanceS = (salary) => salary * 4;
-const performanceA = (salary) => salary * 3;
-const performanceB = (salary) => salary * 2;
+const performanceS = (salary) => salary * 4
+const performanceA = (salary) => salary * 3
+const performanceB = (salary) => salary * 2
 ```
 
 然后我们定义了一个年终奖函数 `bonus`，它接受工资和绩效策略函数两个参数，并调用传递进来的绩效策略函数来计算年终奖金额。
 
 ```js
 // 定义年终奖函数
-const bonus = (salary, performance) => performance(salary);
+const bonus = (salary, performance) => performance(salary)
 ```
 
 在使用过程中，我们直接调用了 `bonus` 函数，并传递了工资和绩效策略函数，即可获取年终奖金额。
 
 ```js
-
 // 使用示例
-const salary = 10000;
-console.log("S 级绩效年终奖为：", bonus(salary, performanceS)); // 40000
-console.log("A 级绩效年终奖为：", bonus(salary, performanceA)); // 30000
-console.log("B 级绩效年终奖为：", bonus(salary, performanceB)); // 20000
+const salary = 10000
+console.log('S 级绩效年终奖为：', bonus(salary, performanceS)) // 40000
+console.log('A 级绩效年终奖为：', bonus(salary, performanceA)) // 30000
+console.log('B 级绩效年终奖为：', bonus(salary, performanceB)) // 20000
 ```
 
 ## 六、总结

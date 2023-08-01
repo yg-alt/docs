@@ -29,43 +29,42 @@
 // 定义一个基本的组件类
 class Component {
   operation() {
-    console.log("Component operation");
+    console.log('Component operation')
   }
 }
 
 // 定义一个装饰器类，它包含一个原始对象，并实现了与原始对象相同的接口
 class Decorator {
   constructor(component) {
-    this.component = component;
+    this.component = component
   }
   operation() {
-    this.component.operation();
-    console.log("Decorator operation");
+    this.component.operation()
+    console.log('Decorator operation')
   }
 }
 
 // 定义一个具体的装饰器类，它在原始对象的基础上添加了新的行为
 class ConcreteDecoratorA extends Decorator {
   operation() {
-    super.operation();
-    console.log("ConcreteDecoratorA operation");
+    super.operation()
+    console.log('ConcreteDecoratorA operation')
   }
 }
 
 // 定义另一个具体的装饰器类，它在原始对象的基础上添加了另一个新的行为
 class ConcreteDecoratorB extends Decorator {
   operation() {
-    super.operation();
-    console.log("ConcreteDecoratorB operation");
+    super.operation()
+    console.log('ConcreteDecoratorB operation')
   }
 }
 
 // 使用装饰器模式来扩展组件对象的功能
-let component = new Component();
-let decoratorA = new ConcreteDecoratorA(component);
-let decoratorB = new ConcreteDecoratorB(decoratorA);
-decoratorB.operation();
-
+let component = new Component()
+let decoratorA = new ConcreteDecoratorA(component)
+let decoratorB = new ConcreteDecoratorB(decoratorA)
+decoratorB.operation()
 ```
 
 ## 五、总结

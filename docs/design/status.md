@@ -29,49 +29,51 @@
 // 定义一个状态类，封装状态相关的行为
 class State {
   constructor() {
-    this.color = "";
+    this.color = ''
   }
 
   handle(context) {
-    console.log(`State: ${context.name} changes color to ${this.color}`);
+    console.log(`State: ${context.name} changes color to ${this.color}`)
   }
 }
 
 // 定义不同的状态类，继承自状态类，每个状态类封装一种状态相关的行为
 class RedState extends State {
   constructor() {
-    super();
-    this.color = "red";
+    super()
+    this.color = 'red'
   }
 }
 
 class BlueState extends State {
   constructor() {
-    super();
-    this.color = "blue";
+    super()
+    this.color = 'blue'
   }
 }
 
 // 定义一个上下文类，它包含一个状态类的实例，并可以通过改变状态来改变行为
 class Context {
   constructor(name) {
-    this.name = name;
-    this.state = new RedState();
+    this.name = name
+    this.state = new RedState()
   }
 
   setState(state) {
-    console.log(`Context: State changed.`);
-    this.state = state;
-    this.state.handle(this);
+    console.log(`Context: State changed.`)
+    this.state = state
+    this.state.handle(this)
   }
 }
 
 // 创建一个上下文对象，并根据不同的状态改变行为
-let context = new Context("Object A");
-context.setState(new BlueState());
-context.setState(new RedState());
+let context = new Context('Object A')
+context.setState(new BlueState())
+context.setState(new RedState())
 ```
 
 ## 五、总结
 
-状态模式是一种非常有用的设计模式，它可以将状态和状态相关的行为封装到一个对象中，从而降低系统的复杂度，提高代码的可维护性和可扩展性。通过状态模式，我们可以更加清晰地描述一个对象在不同状态下的行为，并且可以通过添加新的状态和行为来扩展系统的功能。此外，状态模式还可以与其他设计模式结合使用，比如策略模式、观察者模式等，从而进一步增强系统的功能和灵活性。在使用状态模式时，我们需要根据具体的需求进行抽象和建模，同时也需要注意模式的适用范围和限制，以确保模式的有效性和可用性
+状态模式是一种非常有用的设计模式，它可以将状态和状态相关的行为封装到一个对象中，从而降低系统的复杂度，提高代码的可维护性和可扩展性。通过状态模式，我们可以更加清晰地描述一个对象在不同状态下的行为，并且可以通过添加新的状态和行为来扩展系统的功能。
+
+此外，状态模式还可以与其他设计模式结合使用，比如策略模式、观察者模式等，从而进一步增强系统的功能和灵活性。在使用状态模式时，我们需要根据具体的需求进行抽象和建模，同时也需要注意模式的适用范围和限制，以确保模式的有效性和可用性

@@ -6,26 +6,26 @@
 
 ## 一、JavaScript 中的单例模式
 
-在 JavaScript 开发中，我们经常会把全局变量当成单例来使用，但是这样容易造成命名空间污染。我们有必要尽量减少全局变量的使用，即使需要，也应该把污染降到最低。
+在 **JavaScript** 开发中，我们经常会把全局变量当成单例来使用，但是这样容易造成命名空间污染。我们有必要尽量减少全局变量的使用，即使需要，也应该把污染降到最低。
 
 ### 1. 使用命名空间
 
 适当的使用命名空间，并不会杜绝全局变量，但可以减少全局变量的数量。
 
 ```javascript
-let MyApp = {};
+let MyApp = {}
 
 MyApp.namespace = (name) => {
   const parts = name.split('.')
   let current = MyApp
   for (var i in parts) {
     const key = parts[i]
-    if ( !current[key] ) {
+    if (!current[key]) {
       current[key] = {}
     }
     current = current[key]
   }
-};
+}
 
 MyApp.namespace('event')
 MyApp.namespace('dom.stype')
@@ -37,9 +37,9 @@ console.dir(MyApp)
 let MyApp = {
   event: {},
   dom: {
-    style: {}
-  }
-};
+    style: {},
+  },
+}
 ```
 
 ### 2. 使用闭包封装私有变量
@@ -48,13 +48,14 @@ let MyApp = {
 
 ```javascript
 const user = (() => {
-  const _name = 'sven', _age = 29
+  const _name = 'sven',
+    _age = 29
   return {
     getUserInfo: () => {
       return _name + '-' + _age
-    }
+    },
   }
-})();
+})()
 
 console.log(user.getUserInfo())
 ```
@@ -65,10 +66,10 @@ console.log(user.getUserInfo())
 
 ```javascript
 // 管理单例
-const getSingle = function(fn) {
+const getSingle = function (fn) {
   let result
   return () => {
-    return result || ( result = fn.apply(this, arguments) )
+    return result || (result = fn.apply(this, arguments))
   }
 }
 
@@ -84,7 +85,6 @@ var loginLayer = createSingleLoginLayer()
 var loginLayer = createSingleLoginLayer()
 var loginLayer = createSingleLoginLayer()
 
-
 const createSingleIframe = getSingle(() => {
   const iframe = document.createElement('iframe')
   document.body.appendChild(iframe)
@@ -98,12 +98,13 @@ var iframe = createSingleIframe()
 ## 三、例子
 
 - 描述（**实现一个 Storage）**
+
 实现 Storage，使得该对象为单例，基于 localStorage 进行封装。实现方法 setItem(key,value) 和 getItem(key)。
 
 - 实现 1 **（闭包实现 Storage）**
 
 ```javascript
-function StoreBase(){}
+function StoreBase() {}
 StoreBase.prototype.getItem = (key) => {
   return localStorage.getItem(key)
 }

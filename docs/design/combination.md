@@ -1,6 +1,6 @@
 # 组合模式
 
-> 组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，是的用户对单个对象和组合对象的使用具有一致性。
+> 组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。
 
 ## 一、组合模式特点：
 
@@ -19,7 +19,7 @@
 
 3. **用职责链模式提高组合模式性能。**
 
-在合租模式中，如果树的结构比较复杂，节点数量很多，在遍历树的过程中，性能方面也许表现得不够理想。有时候我们确实可以借助一些技巧，在实际操作中避免遍历整棵树，有一种线程得方案是借助 `职责链模式`。`职责链模式`一般需要我们手动去设置链条，但在组合模式中，父对象和子对象之间实际上形成了天然得职责链。让请求顺着链条从父对象往子对象传递，或者是反过来从子对象往父对象传递，直到遇到可以处理该请求得对象为止，这也是`职责链模式`得经典运用场景之一。
+在组合模式中，如果树的结构比较复杂，节点数量很多，在遍历树的过程中，性能方面也许表现得不够理想。有时候我们确实可以借助一些技巧，在实际操作中避免遍历整棵树，有一种线程得方案是借助 `责任链模式`。`责任链模式`一般需要我们手动去设置链条，但在组合模式中，父对象和子对象之间实际上形成了天然得职责链。让请求顺着链条从父对象往子对象传递，或者是反过来从子对象往父对象传递，直到遇到可以处理该请求得对象为止，这也是`责任链模式`的经典运用场景之一。
 
 ## 三、何时使用组合模式
 
@@ -30,39 +30,38 @@
 
 ## 四、例子
 
-### 1. 扫描文件夹
+### 1.扫描文件夹
 
 文件夹和文件之间的关系，非常适合用组合模式来描述。文件夹里既可以包含文件，又可以包含其他文件夹，最终可能组合成一棵树。
 
 ```javascript
-const Folder = function(name) {
+const Folder = function (name) {
   this.name = name
   this.files = []
 }
 
-Folder.prototype.add = function(file) {
+Folder.prototype.add = function (file) {
   this.files.push(file)
 }
 
-Folder.prototype.scan = function() {
+Folder.prototype.scan = function () {
   console.log('开始扫描文件夹：' + this.name)
-  for( let i = 0, file, files = this.files; file = files[i++];) {
+  for (let i = 0, file, files = this.files; (file = files[i++]); ) {
     file.scan()
   }
 }
-
 ```
 
 ```javascript
-const File = function(name) {
+const File = function (name) {
   this.name = name
 }
 
-File.prototype.add = function() {
+File.prototype.add = function () {
   throw new Error('文件下面不能再添加文件')
 }
 
-File.prototype.scan = function() {
+File.prototype.scan = function () {
   console.log('开始扫描文件：' + this.name)
 }
 ```
@@ -90,7 +89,6 @@ folder3.add(file4)
 const file5 = new File('JavaScript 语言精粹与编程实践')
 folder.add(folder3)
 folder.add(file5)
-
 
 folder.scan()
 ```

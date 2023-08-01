@@ -21,30 +21,30 @@
 
 ```javascript
 /** 本体对象，加载图片 */
-const myImage = (function() {
+const myImage = (function () {
   const imgNode = document.createElement('img')
   document.body.appendChild(imgNode)
 
   return {
-    setSrc: function(src) {
+    setSrc: function (src) {
       imgNode.src = src
-    }
+    },
   }
 })()
 
 /** 代理对象，创建个 Image 对象来加载图片，等待图片加载完毕再将图片填充回 img 节点 */
-const proxyImage = (function() {
-  const img = new Image
-  
-  img.onload = function() {
+const proxyImage = (function () {
+  const img = new Image()
+
+  img.onload = function () {
     myImage.setSrc(this.src)
   }
-  
+
   return {
-    setSrc: function(src) {
+    setSrc: function (src) {
       myImage.setSrc('本地的loading图片')
       img.src = src
-    }
+    },
   }
 })()
 
@@ -59,12 +59,13 @@ proxyImage.setSrc('你要加载的图片')
 ### 1. 计算乘积
 
 首先创建一个用于求乘积的函数：
+
 ```javascript
-const mult = function() {
+const mult = function () {
   console.log('开始计算乘积')
   let a = 1
   for (let i = 0, l = arguments.length; i < l; i++) {
-    a = a* arguments[i]
+    a = a * arguments[i]
   }
   return a
 }
@@ -76,14 +77,14 @@ mult(2, 3, 4) // 输出： 24
 接着加入缓存代理函数:
 
 ```javascript
-const proxyMult = (function() {
+const proxyMult = (function () {
   const cache = {}
-  return function() {
+  return function () {
     const args = Array.prototype.join.call(arguments, ',')
     if (args in cache) {
       return cache[args]
     }
-    return cache[args] = mult.apply(this, arguments)
+    return (cache[args] = mult.apply(this, arguments))
   }
 })()
 
