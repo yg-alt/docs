@@ -21,12 +21,13 @@ export default defineConfig((ctx) => ({
     // 默认为 "Edit this page"
     editLinkText: '帮助我们改善此页面！',
     nav: [
-      { text: '设计模式', link: '/design/' }, // 内部链接 以docs为根目录
+      { text: '设计模式', link: '/design/' },
+      { text: 'Vue 学习', link: '/vue/' },
     ],
     smoothScroll: true,
     sidebar: {
       '/design/': ['', 'adapter', 'combination', 'decorator', 'chain-of-responsibility', 'publish-subcribe', 'proxy', 'single', 'status', 'strategy'],
-      '/foo/': ['', 'one', 'two'],
+      '/vue/': ['', 'pinia'],
     },
 
     sidebarDepth: 2,
