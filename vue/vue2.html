@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue 响应式原理 | 前端小站</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="起风了 唯有努力生存">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.638135f7.css" as="style"><link rel="preload" href="/docs/assets/js/app.84ad8449.js" as="script"><link rel="preload" href="/docs/assets/js/2.eac73957.js" as="script"><link rel="preload" href="/docs/assets/js/22.d11cca30.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.91a37768.js"><link rel="prefetch" href="/docs/assets/js/11.908481ba.js"><link rel="prefetch" href="/docs/assets/js/12.7e1090b9.js"><link rel="prefetch" href="/docs/assets/js/13.e7cde3e9.js"><link rel="prefetch" href="/docs/assets/js/14.0cbde31c.js"><link rel="prefetch" href="/docs/assets/js/15.d0e63772.js"><link rel="prefetch" href="/docs/assets/js/16.355432aa.js"><link rel="prefetch" href="/docs/assets/js/17.25c0f546.js"><link rel="prefetch" href="/docs/assets/js/18.68ea65dd.js"><link rel="prefetch" href="/docs/assets/js/19.bc1c51b1.js"><link rel="prefetch" href="/docs/assets/js/20.efb2abf9.js"><link rel="prefetch" href="/docs/assets/js/21.5ca90688.js"><link rel="prefetch" href="/docs/assets/js/3.21567242.js"><link rel="prefetch" href="/docs/assets/js/4.91b673b3.js"><link rel="prefetch" href="/docs/assets/js/5.b4869271.js"><link rel="prefetch" href="/docs/assets/js/6.f45a8450.js"><link rel="prefetch" href="/docs/assets/js/7.ecb1772a.js"><link rel="prefetch" href="/docs/assets/js/8.487827a8.js"><link rel="prefetch" href="/docs/assets/js/9.25ec15e4.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.638135f7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">前端小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link router-link-active">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link router-link-active">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/docs/vue/" aria-current="page" class="sidebar-link">Vue 学习</a></li><li><a href="/docs/vue/pinia.html" class="sidebar-link">Pinia</a></li><li><a href="/docs/vue/vue2.html" aria-current="page" class="active sidebar-link">Vue 响应式原理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/vue/vue2.html#订阅者-dep" class="sidebar-link">订阅者 Dep</a></li><li class="sidebar-sub-header"><a href="/docs/vue/vue2.html#观察者-watcher" class="sidebar-link">观察者 Watcher</a></li><li class="sidebar-sub-header"><a href="/docs/vue/vue2.html#监听器-observer" class="sidebar-link">监听器 Observer</a></li><li class="sidebar-sub-header"><a href="/docs/vue/vue2.html#vue-组装" class="sidebar-link">Vue 组装</a></li><li class="sidebar-sub-header"><a href="/docs/vue/vue2.html#简单示例" class="sidebar-link">简单示例</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue-响应式原理"><a href="#vue-响应式原理" class="header-anchor">#</a> Vue 响应式原理</h1> <p><code>VUE</code> 的响应式原理是先将 <code>vue</code> 对象的所有属性遍历一遍，为每个属性都添加 <code>getter</code> 和 <code>setter</code> 方法，接着当 <code>render function</code> 被渲染的时候，因为会读取所需对象的属性，因此会触发 <code>getter</code> 函数进行【依赖收集】，【依赖收集】的目的是将 <code>Watcher</code> 对象添加到当前闭包中的订阅者 <code>Dep</code> 的 <code>subs</code> 中。在修改对象的值时，会触发对应的 <code>setter</code> ， <code>setter</code> 通知之前【依赖收集】得到的 <code>Dep</code> 中的每一个 <code>Watcher</code> ，告诉它们自己的值改变了，需要重新渲染视图。这时候这些 <code>Watcher</code> 就会开始调用 <code>update</code> 来更新视图。</p> <h2 id="订阅者-dep"><a href="#订阅者-dep" class="header-anchor">#</a> 订阅者 Dep</h2> <p>订阅者 <code>Dep</code> ，它的主要作用是用来存放 <code>Watcher</code> 观察者对象。主要有以下两个功能：</p> <ol><li>用 <code>addSub</code> 方法可以在目前的 <code>Dep</code> 对象中增加一个 <code>Watcher</code> 的订阅操作；</li> <li>用 <code>notify</code> 方法通知目前 <code>Dep</code> 对象的 <code>subs</code> 中的所有 <code>Watcher</code> 对象触发更新操作。</li></ol> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">// 定义订阅者类 Dep</span>
+<span class="token keyword">class</span> <span class="token class-name">Dep</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* 初始化订阅队列，用来存放 Watcher 对象的数组 */</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>subs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/* 增加订阅者，在 subs 中添加一个 Watcher 对象 */</span>
+  <span class="token function">addSub</span><span class="token punctuation">(</span><span class="token parameter">sub</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>subs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>sub<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/* 通知所有 Watcher 对象更新视图 */</span>
+  <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>subs<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">sub</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      sub<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h2 id="观察者-watcher"><a href="#观察者-watcher" class="header-anchor">#</a> 观察者 Watcher</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Watcher</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* 在 new 一个 Watcher 对象时将该对象赋值给 Dep.target，在 get 中会用到 */</span>
+    Dep<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token keyword">this</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/* 更新视图的方法 */</span>
+  <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'视图更新啦～'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+Dep<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token keyword">null</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="监听器-observer"><a href="#监听器-observer" class="header-anchor">#</a> 监听器 Observer</h2> <p>实现一个方法，这个方法会对需要监听的数据对象进行遍历、给它的属性加上定制的 getter 和 setter 函数。这样但凡这个对象的某个属性发生了改变，就会触发 setter 函数，进而通知到订阅者。</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">// observe 方法遍历并包装对象属性</span>
+<span class="token keyword">function</span> <span class="token function">observe</span><span class="token punctuation">(</span><span class="token parameter">target</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 若 target 是一个对象，则遍历它</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> target <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// defineReactive 方法会给目标属性装上 “监听器”</span>
+      <span class="token function">defineReactive</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> key<span class="token punctuation">,</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">defineReactive</span><span class="token punctuation">(</span><span class="token parameter">obj<span class="token punctuation">,</span> key<span class="token punctuation">,</span> val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* 一个Dep类对象 */</span>
+  <span class="token keyword">const</span> dep <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dep</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">/* 属性值也可能是 object 类型，这种情况下需要调用 observe 进行递归遍历 */</span>
+  <span class="token function">observe</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+
+  <span class="token comment">// 为当前属性安装监听器</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> key<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 可枚举</span>
+    <span class="token literal-property property">enumerable</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// 不可配置</span>
+    <span class="token literal-property property">configurable</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token function">reactiveGetter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* 将 Dep.target（即当前的 Watcher 对象存入 dep 的 subs 中） */</span>
+      dep<span class="token punctuation">.</span><span class="token function">addSub</span><span class="token punctuation">(</span>Dep<span class="token punctuation">.</span>target<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> val
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 监听器函数</span>
+    <span class="token function-variable function">set</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token function">reactiveSetter</span><span class="token punctuation">(</span><span class="token parameter">newVal</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>newVal <span class="token operator">===</span> val<span class="token punctuation">)</span> <span class="token keyword">return</span>
+      <span class="token comment">/* 在 set 的时候触发 dep 的 notify 来通知所有的 Watcher 对象更新视图 */</span>
+      dep<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><h2 id="vue-组装"><a href="#vue-组装" class="header-anchor">#</a> Vue 组装</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">Vue</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_data <span class="token operator">=</span> options<span class="token punctuation">.</span>data
+    <span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_data<span class="token punctuation">)</span>
+    <span class="token comment">/* 新建一个 Watcher 观察者对象，这时候 Dep.target 会指向这个 Watcher 对象 */</span>
+    <span class="token keyword">new</span> <span class="token class-name">Watcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">/* 在这里模拟 render 的过程，为了触发 test 属性的 get 函数 */</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'render~'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_data<span class="token punctuation">.</span>test<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h2 id="简单示例"><a href="#简单示例" class="header-anchor">#</a> 简单示例</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">let</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token string">'origin'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+vm<span class="token punctuation">.</span>_data<span class="token punctuation">.</span>test <span class="token operator">=</span> <span class="token string">'测试更改！'</span>
+
+<span class="token comment">/* 运行结果
+ * render~ origin
+ * 视图更新啦～
+ * &quot;测试更改！&quot;
+ */</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/Cwd295645351/docs/edit/main/docs/vue/vue2.md" target="_blank" rel="noopener noreferrer">帮助我们改善此页面！</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/7/2023, 5:35:54 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/vue/pinia.html" class="prev">
+        Pinia
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.84ad8449.js" defer></script><script src="/docs/assets/js/2.eac73957.js" defer></script><script src="/docs/assets/js/22.d11cca30.js" defer></script>
+  </body>
+</html>
