@@ -9,3 +9,8 @@
 - [Vite](https://cn.vitejs.dev/)
 - [Vue Router](https://router.vuejs.org/zh/)
 - [Pinia](https://pinia.vuejs.org/zh/)
+
+## 上一版本
+
+- [Vue2 官方文档](https://v2.cn.vuejs.org/v2/guide/)
+- [Vuex](https://vuex.vuejs.org/zh/)
