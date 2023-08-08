@@ -29,7 +29,7 @@ export default defineConfig((ctx) => ({
     sidebar: {
       '/design/': ['', 'adapter', 'combination', 'decorator', 'chain-of-responsibility', 'publish-subcribe', 'proxy', 'single', 'status', 'strategy'],
       '/vue/': ['', 'pinia', 'vue2'],
-      '/code/': [''],
+      '/code/': ['', 'curry'],
     },
 
     sidebarDepth: 2,
