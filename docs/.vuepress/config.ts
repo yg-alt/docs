@@ -23,13 +23,15 @@ export default defineConfig((ctx) => ({
     nav: [
       { text: '设计模式', link: '/design/' },
       { text: 'Vue 学习', link: '/vue/' },
+      { text: 'JS & TS', link: '/js_ts/' },
       { text: '代码块', link: '/code/' },
     ],
     smoothScroll: true,
     sidebar: {
       '/design/': ['', 'adapter', 'combination', 'decorator', 'chain-of-responsibility', 'publish-subcribe', 'proxy', 'single', 'status', 'strategy'],
       '/vue/': ['', 'pinia', 'vue2'],
-      '/code/': ['', 'curry'],
+      '/js_ts/': ['', 'curry'],
+      '/code/': ['', 'prettier'],
     },
 
     sidebarDepth: 2,
