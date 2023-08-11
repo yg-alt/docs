@@ -382,7 +382,7 @@ interface StringifiedFoo {
 }
 ```
 
-### Partial
+### Partial（可选）
 
 Partial 可以将对象的所有属性映射为可选，实现原理如下：
 
@@ -411,7 +411,7 @@ type PartialFoo = Partial<Foo>
  */
 ```
 
-### Required
+### Required（必填）
 
 Required 可以将对象的所有属性置为必填，实现原理如下：
 
@@ -440,7 +440,7 @@ type RequiredFoo = Required<Foo>
  */
 ```
 
-### Readonly
+### Readonly（只读）
 
 Readonly 可以将对象的所有属性置为只读，实现原理如下：
 
@@ -469,7 +469,7 @@ type ReadonlyFoo = Readonly<Foo>
  */
 ```
 
-### Pick
+### Pick（提取属性）
 
 Pick 可以提取对象的一部分属性，组成新的对象，实现原理如下：
 
@@ -497,7 +497,7 @@ type PickFoo = Pick<Foo, 'prop1' | 'prop2'>
  */
 ```
 
-### Exclude
+### Exclude（不包含）
 
 Exclude 意思是不包含，`Exclude<T, U>` 会返回 联合类型 **T** 中不包含 联合类型 **U** 的部分。实现原理如下：
 
@@ -512,7 +512,7 @@ type Test = Exclude<'a' | 'b' | 'c', 'a'>
 // 'b' | 'c'
 ```
 
-### Extract
+### Extract（交集）
 
 Extract 是取交集，能提取联合类型 **T** 和联合类型 **U** 的所有交集。实现原理如下：
 
@@ -527,7 +527,7 @@ type Test = Exclude<'a' | 'b' | 'c', 'a' | 'c' | 'd'>
 // 'a' | 'c'
 ```
 
-### Omit
+### Omit（差集）
 
 Omit 表示差集， `Omit<T, U>` 从类型 **T** 中剔除 **U** 中的所有属性。实现原理如下：
 
@@ -557,7 +557,7 @@ type OmitFoo = Omit<Foo, 'age'>
  */
 ```
 
-### NonNullable
+### NonNullable（过滤非空）
 
 `NonNullable<T>` 用来过滤类型中的 null 及 undefined 类型。实现原理如下：
 
@@ -572,7 +572,7 @@ type T0 = NonNullable<string | number | undefined> // string | number
 type T1 = NonNullable<string[] | null | undefined> // string[]
 ```
 
-### Parameters
+### Parameters（获取函数参数）
 
 Parameters 获取函数的参数类型，将每个参数类型放在一个元组中。实现原理如下：
 
@@ -590,9 +590,9 @@ type T2 = Parameters<(arg: string) => void> // [string]
 type T3 = Parameters<(arg1: string, arg2: number) => void> // [arg1: string, arg2: number]
 ```
 
-### Parameters
+### ReturnType（获取函数返回值）
 
-Parameters 获取函数的参数类型，将每个参数类型放在一个元组中。实现原理如下：
+ReturnType 获取函数的返回值类型。实现原理如下：
 
 ```typescript
 type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any
