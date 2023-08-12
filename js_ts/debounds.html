@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>防抖与节流 | 前端小站</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="起风了 唯有努力生存">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.638135f7.css" as="style"><link rel="preload" href="/docs/assets/js/app.70a1be31.js" as="script"><link rel="preload" href="/docs/assets/js/2.eac73957.js" as="script"><link rel="preload" href="/docs/assets/js/23.6471a59f.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.e7194a7b.js"><link rel="prefetch" href="/docs/assets/js/11.e1a8fbdf.js"><link rel="prefetch" href="/docs/assets/js/12.71326d54.js"><link rel="prefetch" href="/docs/assets/js/13.8e1a46ea.js"><link rel="prefetch" href="/docs/assets/js/14.7844e3c0.js"><link rel="prefetch" href="/docs/assets/js/15.4c116a85.js"><link rel="prefetch" href="/docs/assets/js/16.55c7c5fb.js"><link rel="prefetch" href="/docs/assets/js/17.b7171c29.js"><link rel="prefetch" href="/docs/assets/js/18.6e8f2508.js"><link rel="prefetch" href="/docs/assets/js/19.a7171f6d.js"><link rel="prefetch" href="/docs/assets/js/20.0b0eada3.js"><link rel="prefetch" href="/docs/assets/js/21.5c4ba660.js"><link rel="prefetch" href="/docs/assets/js/22.3f377b05.js"><link rel="prefetch" href="/docs/assets/js/24.4c7a61e5.js"><link rel="prefetch" href="/docs/assets/js/25.bde4833a.js"><link rel="prefetch" href="/docs/assets/js/26.103628a8.js"><link rel="prefetch" href="/docs/assets/js/27.6153a6c9.js"><link rel="prefetch" href="/docs/assets/js/3.21567242.js"><link rel="prefetch" href="/docs/assets/js/4.9d4479f8.js"><link rel="prefetch" href="/docs/assets/js/5.b4869271.js"><link rel="prefetch" href="/docs/assets/js/6.f45a8450.js"><link rel="prefetch" href="/docs/assets/js/7.ecb1772a.js"><link rel="prefetch" href="/docs/assets/js/8.487827a8.js"><link rel="prefetch" href="/docs/assets/js/9.25ec15e4.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.638135f7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">前端小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/js_ts/" class="nav-link router-link-active">
+  JS &amp; TS
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/js_ts/" class="nav-link router-link-active">
+  JS &amp; TS
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/docs/js_ts/" aria-current="page" class="sidebar-link">简介</a></li><li><a href="/docs/js_ts/typescript.html" class="sidebar-link">TypeScript 使用指南</a></li><li><a href="/docs/js_ts/curry.html" class="sidebar-link">柯里化与反柯里化</a></li><li><a href="/docs/js_ts/debounds.html" aria-current="page" class="active sidebar-link">防抖与节流</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="防抖与节流"><a href="#防抖与节流" class="header-anchor">#</a> 防抖与节流</h1> <p><strong>防抖</strong>（Debounce）和 <strong>节流</strong>（Throttle）是两种常见的前端性能优化技术，用于限制事件处理函数的执行频率，从而减少浏览器的计算负担，提升页面性能。</p> <h3 id="一、防抖"><a href="#一、防抖" class="header-anchor">#</a> 一、防抖</h3> <p>防抖的原理是在事件触发后，等待一段时间（比如100毫秒），如果在这段时间内没有再次触发该事件，那么执行事件处理函数；如果在等待时间内再次触发了该事件，那么重新计时，等待一段时间后再执行事件处理函数。</p> <p>防抖常用于处理一些高频触发的事件，例如窗口大小调整、输入框输入等。下面是一个简单的防抖函数的示例代码：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">/**
+ * @param {function} fn - 需要防抖的函数
+ * @param {number} time - 多长时间执行一次
+ * @param {boolean} flag - 第一次是否执行
+ */</span>
+<span class="token keyword">function</span> <span class="token function">debounce</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> time<span class="token punctuation">,</span> flag</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> timer<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 在 time 时间段内重复执行，会清空之前的定时器，然后重新计时</span>
+        timer <span class="token operator">&amp;&amp;</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// flag 为 true，第一次默认执行</span>
+            <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>其中，<code>fn</code> 是需要进行防抖处理的事件处理函数，<code>time</code> 是等待时间，单位毫秒，<code>flag</code> 表示第一次是否执行。这个防抖函数返回了一个新的函数，当事件触发时，新函数会在等待时间内清除之前的计时器，并重新设置计时器，从而实现防抖效果。</p> <h3 id="二、节流"><a href="#二、节流" class="header-anchor">#</a> 二、节流</h3> <p>节流的原理是在一段时间内只执行一次事件处理函数，例如每隔100毫秒执行一次，而不管事件触发了多少次。</p> <p>节流常用于处理一些频繁触发但不需要立即响应的事件，例如滚动事件、鼠标移动事件等。下面是一个简单的节流函数的示例代码：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">/**
+ * @param {function} fn - 需要节流的函数
+ * @param {number} time - 多长时间执行一次
+ * @param {boolean} flag - 第一次是否执行
+ */</span>
+<span class="token keyword">function</span> <span class="token function">throttle</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> time<span class="token punctuation">,</span> flag</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> timer<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// flag 控制第一次是否立即执行</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 第一次执行完后，flag 变为 false；否则以后每次都会执行</span>
+            flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// 每次执行完重置timer</span>
+                timer <span class="token operator">=</span> <span class="token keyword">null</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>其中，<code>fn</code> 是需要进行节流处理的事件处理函数，<code>time</code> 是执行间隔时间，单位毫秒，<code>flag</code> 表示第一次是否执行。这个节流函数返回了一个新的函数，当事件触发时，新函数会在等待时间内判断上一次是否执行过事件处理函数，如果没有，则执行事件处理函数，并重新设置计时器，从而实现节流效果。</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/Cwd295645351/docs/edit/main/docs/js_ts/debounds.md" target="_blank" rel="noopener noreferrer">帮助我们改善此页面！</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/12/2023, 3:11:04 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/js_ts/curry.html" class="prev">
+        柯里化与反柯里化
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.70a1be31.js" defer></script><script src="/docs/assets/js/2.eac73957.js" defer></script><script src="/docs/assets/js/23.6471a59f.js" defer></script>
+  </body>
+</html>
