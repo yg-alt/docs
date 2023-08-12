@@ -30,7 +30,7 @@ export default defineConfig((ctx) => ({
     sidebar: {
       '/design/': ['', 'adapter', 'combination', 'decorator', 'chain-of-responsibility', 'publish-subcribe', 'proxy', 'single', 'status', 'strategy'],
       '/vue/': ['', 'pinia', 'vue2'],
-      '/js_ts/': ['', 'typescript', 'curry'],
+      '/js_ts/': ['', 'typescript', 'curry', 'debounds'],
       '/code/': ['', 'prettier'],
     },
 
