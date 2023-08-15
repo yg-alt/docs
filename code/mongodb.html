@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mongodb 常用指令 | 前端小站</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="起风了 唯有努力生存">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.638135f7.css" as="style"><link rel="preload" href="/docs/assets/js/app.e67d61cb.js" as="script"><link rel="preload" href="/docs/assets/js/2.eac73957.js" as="script"><link rel="preload" href="/docs/assets/js/10.ae0d91b1.js" as="script"><link rel="prefetch" href="/docs/assets/js/11.41f2e41a.js"><link rel="prefetch" href="/docs/assets/js/12.54b866f0.js"><link rel="prefetch" href="/docs/assets/js/13.b07ad600.js"><link rel="prefetch" href="/docs/assets/js/14.c22534d8.js"><link rel="prefetch" href="/docs/assets/js/15.dfd962f9.js"><link rel="prefetch" href="/docs/assets/js/16.3d3eeea9.js"><link rel="prefetch" href="/docs/assets/js/17.f79f0f7a.js"><link rel="prefetch" href="/docs/assets/js/18.3d5ce75d.js"><link rel="prefetch" href="/docs/assets/js/19.8c8fcfa6.js"><link rel="prefetch" href="/docs/assets/js/20.b199f20b.js"><link rel="prefetch" href="/docs/assets/js/21.5c690977.js"><link rel="prefetch" href="/docs/assets/js/22.bb1b8930.js"><link rel="prefetch" href="/docs/assets/js/23.ec43e7ad.js"><link rel="prefetch" href="/docs/assets/js/24.98926b03.js"><link rel="prefetch" href="/docs/assets/js/25.23854750.js"><link rel="prefetch" href="/docs/assets/js/26.4ababb00.js"><link rel="prefetch" href="/docs/assets/js/27.f4484826.js"><link rel="prefetch" href="/docs/assets/js/28.9970cf0d.js"><link rel="prefetch" href="/docs/assets/js/29.3d49f377.js"><link rel="prefetch" href="/docs/assets/js/3.21567242.js"><link rel="prefetch" href="/docs/assets/js/30.c4330677.js"><link rel="prefetch" href="/docs/assets/js/4.af2f7a4b.js"><link rel="prefetch" href="/docs/assets/js/5.b4869271.js"><link rel="prefetch" href="/docs/assets/js/6.f45a8450.js"><link rel="prefetch" href="/docs/assets/js/7.ecb1772a.js"><link rel="prefetch" href="/docs/assets/js/8.487827a8.js"><link rel="prefetch" href="/docs/assets/js/9.25ec15e4.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.638135f7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">前端小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/js_ts/" class="nav-link">
+  JS &amp; TS
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link router-link-active">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/js_ts/" class="nav-link">
+  JS &amp; TS
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link router-link-active">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/docs/code/" aria-current="page" class="sidebar-link">简介</a></li><li><a href="/docs/code/prettier.html" class="sidebar-link">VS Code Prettier 代码格式化</a></li><li><a href="/docs/code/mongodb.html" aria-current="page" class="active sidebar-link">Mongodb 常用指令</a></li><li><a href="/docs/code/nginx.html" class="sidebar-link">nginx 配置</a></li><li><a href="/docs/code/postcss.html" class="sidebar-link">postcss px2vw 配置</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="mongodb-常用指令"><a href="#mongodb-常用指令" class="header-anchor">#</a> Mongodb 常用指令</h1> <div class="language-js line-numbers-mode"><pre class="language-js"><code>
+show databases<span class="token comment">// 查看数据库</span>
+
+use 数据库名 <span class="token comment">// 切换/创建数据库</span>
+
+db<span class="token punctuation">.</span><span class="token function">dropDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 删除当前使用的数据库</span>
+
+db<span class="token punctuation">.</span><span class="token function">cloneDatabase</span><span class="token punctuation">(</span><span class="token string">&quot;127.0.0.1&quot;</span><span class="token punctuation">)</span> <span class="token comment">// 从指定主机克隆数据库</span>
+
+show collections <span class="token comment">// 查看所有集合</span>
+
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">drop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 删除集合</span>
+
+<span class="token comment">// 插入文档</span>
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2141&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 更新文档</span>
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2141&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">$set</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;test&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 查找文档</span>
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2141&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 删除文档</span>
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2141&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 将 schedules 数组中的所有 interviewerId 和 interviewerName 放置到数组中</span>
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  item<span class="token punctuation">.</span>schedules<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">schedule</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    schedule<span class="token punctuation">.</span>interviewers <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">interviewerId</span><span class="token operator">:</span> schedule<span class="token punctuation">.</span>interviewerId<span class="token punctuation">,</span>
+        <span class="token literal-property property">interviewerName</span><span class="token operator">:</span> schedule<span class="token punctuation">.</span>interviewerName
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 删除 schedules 属性数组中的所有 interviewerName 属性</span>
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span> <span class="token string-property property">&quot;schedules.interviewerName&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">$exists</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">$unset</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token string-property property">&quot;schedules.$[].interviewerName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span>multi <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span>upsert <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">// 批量删除</span>
+db<span class="token punctuation">.</span>集合名<span class="token punctuation">.</span><span class="token function">deleteMany</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">billId</span><span class="token operator">:</span> <span class="token string">&quot;2222&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br></div></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/Cwd295645351/docs/edit/main/docs/code/mongodb.md" target="_blank" rel="noopener noreferrer">帮助我们改善此页面！</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/15/2023, 12:49:01 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/code/prettier.html" class="prev">
+        VS Code Prettier 代码格式化
+      </a></span> <span class="next"><a href="/docs/code/nginx.html">
+        nginx 配置
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.e67d61cb.js" defer></script><script src="/docs/assets/js/2.eac73957.js" defer></script><script src="/docs/assets/js/10.ae0d91b1.js" defer></script>
+  </body>
+</html>
