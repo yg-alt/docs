@@ -31,7 +31,7 @@ export default defineConfig((ctx) => ({
       '/design/': ['', 'adapter', 'combination', 'decorator', 'chain-of-responsibility', 'publish-subcribe', 'proxy', 'single', 'status', 'strategy'],
       '/vue/': ['', 'pinia', 'vue2'],
       '/js_ts/': ['', 'typescript', 'curry', 'debounds'],
-      '/code/': ['', 'prettier', 'mongodb', 'nginx', 'postcss', 'pm2'],
+      '/code/': ['', 'prettier', 'mongodb', 'nginx', 'postcss', 'pm2', 'git-commit'],
     },
 
     sidebarDepth: 2,
