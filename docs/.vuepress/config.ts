@@ -29,7 +29,7 @@ export default defineConfig((ctx) => ({
     smoothScroll: true,
     sidebar: {
       '/design/': ['', 'adapter', 'combination', 'decorator', 'chain-of-responsibility', 'publish-subcribe', 'proxy', 'single', 'status', 'strategy'],
-      '/vue/': ['', 'pinia', 'vue2'],
+      '/vue/': ['', 'pinia', 'vue2', 'vuex'],
       '/js_ts/': ['', 'typescript', 'curry', 'debounds', 'spread'],
       '/code/': ['', 'prettier', 'mongodb', 'nginx', 'postcss', 'pm2', 'git-commit'],
     },
