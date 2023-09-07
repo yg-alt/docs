@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>手写 call、apply、bind | 前端小站</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="起风了 唯有努力生存">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.638135f7.css" as="style"><link rel="preload" href="/docs/assets/js/app.06456ad4.js" as="script"><link rel="preload" href="/docs/assets/js/2.eac73957.js" as="script"><link rel="preload" href="/docs/assets/js/27.bd405f7a.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.3e91efb2.js"><link rel="prefetch" href="/docs/assets/js/11.8a776360.js"><link rel="prefetch" href="/docs/assets/js/12.23f9aa4e.js"><link rel="prefetch" href="/docs/assets/js/13.f185b3e9.js"><link rel="prefetch" href="/docs/assets/js/14.595d2756.js"><link rel="prefetch" href="/docs/assets/js/15.5bb22179.js"><link rel="prefetch" href="/docs/assets/js/16.0440c1b5.js"><link rel="prefetch" href="/docs/assets/js/17.baf2ac36.js"><link rel="prefetch" href="/docs/assets/js/18.78257e7a.js"><link rel="prefetch" href="/docs/assets/js/19.62078264.js"><link rel="prefetch" href="/docs/assets/js/20.1553338d.js"><link rel="prefetch" href="/docs/assets/js/21.0f30f8f1.js"><link rel="prefetch" href="/docs/assets/js/22.23913691.js"><link rel="prefetch" href="/docs/assets/js/23.e3f893b4.js"><link rel="prefetch" href="/docs/assets/js/24.42519845.js"><link rel="prefetch" href="/docs/assets/js/25.6b565608.js"><link rel="prefetch" href="/docs/assets/js/26.c87a732e.js"><link rel="prefetch" href="/docs/assets/js/28.2974bf39.js"><link rel="prefetch" href="/docs/assets/js/29.6703258d.js"><link rel="prefetch" href="/docs/assets/js/3.21567242.js"><link rel="prefetch" href="/docs/assets/js/30.666e6118.js"><link rel="prefetch" href="/docs/assets/js/31.a093cdc3.js"><link rel="prefetch" href="/docs/assets/js/32.5849d757.js"><link rel="prefetch" href="/docs/assets/js/33.7099afae.js"><link rel="prefetch" href="/docs/assets/js/34.d3e2cb85.js"><link rel="prefetch" href="/docs/assets/js/35.99dc1ef9.js"><link rel="prefetch" href="/docs/assets/js/4.af9e95a4.js"><link rel="prefetch" href="/docs/assets/js/5.b4869271.js"><link rel="prefetch" href="/docs/assets/js/6.f45a8450.js"><link rel="prefetch" href="/docs/assets/js/7.ecb1772a.js"><link rel="prefetch" href="/docs/assets/js/8.487827a8.js"><link rel="prefetch" href="/docs/assets/js/9.25ec15e4.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.638135f7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">前端小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/js_ts/" class="nav-link router-link-active">
+  JS &amp; TS
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/design/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/docs/vue/" class="nav-link">
+  Vue 学习
+</a></div><div class="nav-item"><a href="/docs/js_ts/" class="nav-link router-link-active">
+  JS &amp; TS
+</a></div><div class="nav-item"><a href="/docs/code/" class="nav-link">
+  代码块
+</a></div> <a href="https://github.com/Cwd295645351/docs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/docs/js_ts/" aria-current="page" class="sidebar-link">简介</a></li><li><a href="/docs/js_ts/typescript.html" class="sidebar-link">TypeScript 使用指南</a></li><li><a href="/docs/js_ts/curry.html" class="sidebar-link">柯里化与反柯里化</a></li><li><a href="/docs/js_ts/debounds.html" class="sidebar-link">防抖与节流</a></li><li><a href="/docs/js_ts/spread.html" class="sidebar-link">展开层叠数组的六种方法</a></li><li><a href="/docs/js_ts/call_apply_bind.html" aria-current="page" class="active sidebar-link">手写 call、apply、bind</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/js_ts/call_apply_bind.html#call" class="sidebar-link">call</a></li><li class="sidebar-sub-header"><a href="/docs/js_ts/call_apply_bind.html#apply" class="sidebar-link">apply</a></li><li class="sidebar-sub-header"><a href="/docs/js_ts/call_apply_bind.html#bind" class="sidebar-link">bind</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="手写-call、apply、bind"><a href="#手写-call、apply、bind" class="header-anchor">#</a> 手写 call、apply、bind</h1> <h2 id="call"><a href="#call" class="header-anchor">#</a> call</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">Call</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context<span class="token punctuation">,</span> <span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 当 context 为 undefined 或 null 时，context 指向window</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>context <span class="token operator">||</span> context <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    context <span class="token operator">=</span> window
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 使用 Symbol 创建唯一的 key 值，防止与原有属性冲突</span>
+  <span class="token keyword">let</span> fn <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// 将当前函数挂载到 context 对象下，this 指向调用 call 的函数</span>
+  context<span class="token punctuation">[</span>fn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span>
+  <span class="token comment">// 隐式绑定 this，如执行 obj.foo(), foo 内的 this 指向 obj</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> context<span class="token punctuation">[</span>fn<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span>
+  <span class="token comment">// 执行完毕后，删除新增的属性</span>
+  <span class="token keyword">delete</span> context<span class="token punctuation">[</span>fn<span class="token punctuation">]</span>
+  <span class="token keyword">return</span> res
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h2 id="apply"><a href="#apply" class="header-anchor">#</a> apply</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">// apply与call相似，只有第二个参数是一个数组，</span>
+<span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">Apply</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context<span class="token punctuation">,</span> args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>context <span class="token operator">||</span> context <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    context <span class="token operator">=</span> window
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> fn <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  context<span class="token punctuation">[</span>fn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> context<span class="token punctuation">[</span>fn<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span>
+  <span class="token keyword">delete</span> context<span class="token punctuation">[</span>fn<span class="token punctuation">]</span>
+  <span class="token keyword">return</span> res
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h2 id="bind"><a href="#bind" class="header-anchor">#</a> bind</h2> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">Bind</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context<span class="token punctuation">,</span> <span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>context <span class="token operator">||</span> context <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    context <span class="token operator">=</span> window
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">let</span> fn <span class="token operator">=</span> <span class="token keyword">this</span>
+  <span class="token keyword">let</span> f <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">const</span> <span class="token function-variable function">result</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token keyword">instanceof</span> <span class="token class-name">fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// result 如果作为构造函数被调用， ths 指向的是 new 出来的对象</span>
+      <span class="token comment">// this instanceof fn，判断 new 出来的对象是否为 fn 的实例</span>
+      <span class="token keyword">this</span><span class="token punctuation">[</span>f<span class="token punctuation">]</span> <span class="token operator">=</span> fn
+      <span class="token keyword">let</span> res <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">[</span>f<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">,</span> <span class="token operator">...</span>args1<span class="token punctuation">)</span>
+      <span class="token keyword">delete</span> <span class="token keyword">this</span><span class="token punctuation">[</span>f<span class="token punctuation">]</span>
+      <span class="token keyword">return</span> res
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// bind 返回的函数作为普通函数被调用时</span>
+      context<span class="token punctuation">[</span>f<span class="token punctuation">]</span> <span class="token operator">=</span> fn
+      <span class="token keyword">let</span> res <span class="token operator">=</span> context<span class="token punctuation">[</span>f<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">,</span> <span class="token operator">...</span>args1<span class="token punctuation">)</span>
+      <span class="token keyword">delete</span> context<span class="token punctuation">[</span>f<span class="token punctuation">]</span>
+      <span class="token keyword">return</span> res
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 如果绑定的是构造函数 那么需要继承构造函数原型属性和方法</span>
+  <span class="token comment">// 实现继承的方式: 使用 Object.create</span>
+  result<span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>fn<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/Cwd295645351/docs/edit/main/docs/js_ts/call_apply_bind.md" target="_blank" rel="noopener noreferrer">帮助我们改善此页面！</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">9/7/2023, 8:53:05 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/js_ts/spread.html" class="prev">
+        展开层叠数组的六种方法
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/docs/assets/js/app.06456ad4.js" defer></script><script src="/docs/assets/js/2.eac73957.js" defer></script><script src="/docs/assets/js/27.bd405f7a.js" defer></script>
+  </body>
+</html>
