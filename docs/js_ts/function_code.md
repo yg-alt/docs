@@ -163,3 +163,85 @@ const nestedMonad = Monad(monad)
 // 试试会发生什么？
 console.log(nestedMonad.flatMap((x) => x))
 ```
+
+## Semigroup（半群）
+
+`Semigroup` 是**闭合**于**结合**性**二元运算**之下的集合 S 构成的代数结构。核心是实现了 `concat` 函数
+
+加法半群
+
+```js
+// 定义一个类型为 Add 的 Semigroup 盒子
+const Add = (value) => ({
+  value,
+  // concat 接收一个类型为 Add 的 Semigroup 盒子作为入参
+  concat: (box) => Add(value + box.value),
+})
+
+// 输出一个 value=6 的 Add 盒子
+Add(1).concat(Add(2)).concat(Add(3))
+```
+
+## Monoid（幺半群）
+
+> `Monoid` 是一种介于 `Semigroup` 和 `group` 之间的代数结构，它是一个拥有了 `identity element` 的半群。
+
+**Monoid = Semigroup + identity element**
+
+`identity element` 在数学上叫做“单位元”。 单位元的特点在于，它和任何运算数相结合时，都不会改变那个运算数。
+
+在函数式编程中，单位元也是一个函数，我们一般把它记为“empty() 函数”
+
+也就是说，Monoid = Semigroup + empty() 函数
+
+```js
+// 定义一个类型为 Add 的 Semigroup 盒子
+const Add = (value) => ({
+  value,
+  // concat 接收一个类型为 Add 的 Semigroup 盒子作为入参
+  concat: (box) => Add(value + box.value),
+})
+
+// 这个 empty() 函数就是加法运算的单位元
+Add.empty = () => Add(0)
+
+// 输出一个 value=3 的 Add 盒子
+Add.empty().concat(Add(1)).concat(Add(2))
+```
+
+在实践中，`Monoid` 常常被放在 `reduce` 的 `callback` 中参与计算。如下：
+
+```js
+// 定义一个类型为 Add 的 Monoid 盒子
+const Add = (value) => ({
+  value,
+  // concat 接收一个类型为 Add 的 Monoid 盒子作为入参
+  concat: (box) => Add(value + box.value),
+})
+Add.empty = () => Add(0)
+
+// 把 Add 盒子放进 reduce 的 callback 里去
+const res = [1, 2, 3, 4].reduce((monoid, num) => monoid.concat(Add(num)), Add.empty())
+```
+
+## foldMap
+
+foldMap 的作用是实现 n 元的 Monoid 盒子运算
+
+```js
+// 这里我以 map+reduce 的写法为例，抽象 foldMap() 函数
+const foldMap = (Monoid, arr) => arr.map(Monoid).reduce((prevMonoid, currentMonoid) => prevMonoid.concat(currentMonoid), Monoid.empty())
+
+// 定义 Multi 盒子
+const Multi = (value) => ({
+  value,
+  concat: (box) => Multi(value * box.value),
+})
+Multi.empty = () => Multi(1)
+
+// 使用 foldMap 实现 Multi 盒子求积功能
+const res = foldMap(Multi, [1, 2, 3, 4])
+
+// 输出 24， 求积成功
+console.log(res.value)
+```
