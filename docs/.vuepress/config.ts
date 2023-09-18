@@ -21,15 +21,17 @@ export default defineConfig((ctx) => ({
     // 默认为 "Edit this page"
     editLinkText: '帮助我们改善此页面！',
     nav: [
+      { text: 'JS & TS', link: '/js_ts/' },
       { text: '设计模式', link: '/design/' },
       { text: 'Vue 学习', link: '/vue/' },
-      { text: 'JS & TS', link: '/js_ts/' },
-      { text: '代码块', link: '/code/' },
+      { text: '工程化', link: '/engineer/' },
+      { text: '即用代码块', link: '/code/' },
     ],
     smoothScroll: true,
     sidebar: {
       '/design/': ['', 'adapter', 'combination', 'decorator', 'chain-of-responsibility', 'publish-subcribe', 'proxy', 'single', 'status', 'strategy'],
       '/vue/': ['', 'pinia', 'vue2', 'vuex'],
+      '/engineer/': ['', 'nvm_nrm'],
       '/js_ts/': ['', 'typescript', 'curry', 'debounds', 'spread', 'call_apply_bind', 'function_code'],
       '/code/': ['', 'prettier', 'mongodb', 'nginx', 'postcss', 'pm2', 'git-commit'],
     },
