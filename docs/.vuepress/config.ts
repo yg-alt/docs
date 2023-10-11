@@ -26,6 +26,7 @@ export default defineConfig((ctx) => ({
       { text: 'Vue 学习', link: '/vue/' },
       { text: '工程化', link: '/engineer/' },
       { text: '即用代码块', link: '/code/' },
+      { text: '掘金文章总览', link: '/juejin/all.html' },
     ],
     smoothScroll: true,
     sidebar: {
