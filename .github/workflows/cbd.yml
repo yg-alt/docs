@@ -11,6 +11,10 @@ on:
     branches: 
       - main
 
+  # 每天下午四点执行（也就是16点，需要-8小时，所以是8）
+  schedule:
+    - cron: "0 8 * * *"
+
 # 当前流程要执行的任务，可以是多个。[my_first_job]就是一个任务
 jobs:
   my_first_job:
@@ -53,7 +57,7 @@ jobs:
         run: npm install
 
       # 拉取掘金数据
-      - run: node main.js --juejin_user_id=${{ secrets.JUEJIN_USER_ID }}
+      - run: node main.js --juejin_user_id=2541726616266382
 
       # 运行构建脚本
       - name: Run Build Script
