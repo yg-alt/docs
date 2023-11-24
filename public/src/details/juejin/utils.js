@@ -1,6 +1,7 @@
 const { JUEJIN_USER_URL, JUEJIN_POST_URL, JUEJIN_COLUMN_URL } = require('./base') // 静态变量
 
 const DateUtils = require('../../../common/utils/DateUtils') // 请求
+const BASE_ARTICLE_DATA = require('../../generate/common/base-article')
 
 // 统计模块
 function getCountArticles(userArticleList, articleMap) {
@@ -71,6 +72,9 @@ function getArticleInfo(article) {
     title, // 标题
     brief_content, // 摘要
     ctime, // 创建时间
+    view_count, // 阅读量
+    collect_count, // 收藏数
+    digg_count, // 点赞数
   } = article_info
   var articleBean = {
     cover_image,
@@ -79,6 +83,11 @@ function getArticleInfo(article) {
     postUrl: JUEJIN_POST_URL + article_id, // 文章地址
     brief_content,
     ctime,
+    hot: false,
+  }
+  if (view_count >= 900 || collect_count >= 5 || digg_count >= 5) {
+    // 当阅读过 900 或点赞和收藏过 5 就算热文
+    articleBean.hot = true
   }
   return articleBean
 }
@@ -101,6 +110,7 @@ function article2MD(articleBean) {
   txt = txt.replace(reg, function (match) {
     return '`' + match + '`'
   }) // 替换所有有标签的标题，加引号 `<标签>`
+  if (articleBean.hot) txt += BASE_ARTICLE_DATA.BadgeLabelMap.hot
   return txt
 }
 
