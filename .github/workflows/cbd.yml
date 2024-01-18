@@ -57,7 +57,7 @@ jobs:
         run: npm install
 
       # 拉取掘金数据
-      - run: node main.js --juejin_user_id=2541726616266382
+      # - run: node main.js --juejin_user_id=2541726616266382
 
       # 运行构建脚本
       - name: Run Build Script
